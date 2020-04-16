@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
+import { getToken } from '@/utils/cookies'
 import store from '@/store'
 
 const service = axios.create({
@@ -12,6 +13,9 @@ const service = axios.create({
 // Request interceptors
 service.interceptors.request.use(
   config => {
+    // console.log('989798798798',config)
+    // console.log('123',UserModule.id_token)
+    // console.log('123',getToken())
     // Add X-Access-Token header to every request, you can add other custom headers here
     if (UserModule.id_token) {
       config.headers['Authorization'] = UserModule.id_token
@@ -26,11 +30,9 @@ service.interceptors.request.use(
 // Response interceptors
 service.interceptors.response.use(
   response => {
-    console.log('888',response)
     return Promise.resolve(response)
   },
   error => {
-    console.log('999',error);
     if (error.response.status === 401 || error.response.status === 403) {
       UserModule.ResetToken()
       location.reload()

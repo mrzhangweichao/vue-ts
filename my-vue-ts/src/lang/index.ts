@@ -12,6 +12,7 @@ import enLocale from './en'
 import zhLocale from './zh'
 
 Vue.use(VueI18n)
+console.log('ssssssss',navigator)
 
 const messages = {
     en: {
@@ -29,9 +30,10 @@ export const getLocale = () => {
     if (cookieLanguage) {
         return cookieLanguage
     }
-
+    
     const language = navigator.language.toLowerCase()
     const locales = Object.keys(messages)
+    console.log('7890000',locales)
     for (const locale of locales) {
         if (language.indexOf(locale) > -1) {
             return locale
