@@ -1,0 +1,29 @@
+// 定制主题
+/* Element Variables */
+
+// Override Element UI variables
+$--color-primary: #1890ff;
+
+// Base color
+$blue:#324157;
+
+// Sidebar
+$subMenuBg:#1f2d3d;
+
+// Login page
+$loginBg: #2d3a4b;
+
+// Icon font path, required
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+// Apply overrided variables in Element UI
+@import '~element-ui/packages/theme-chalk/src/index';
+
+// The :export directive is the magic sauce for webpack
+// https://mattferderer.com/use-sass-variables-in-typescript-and-javascript
+:export {
+  theme: $--color-primary;
+  blue :$blue;
+  subMenuBg: $subMenuBg;
+  loginBg: $loginBg
+}
