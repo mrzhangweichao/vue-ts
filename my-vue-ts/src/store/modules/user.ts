@@ -26,7 +26,6 @@ class User extends VuexModule implements IUserState {
 
     @Action
     public async Login(params: any) { // 登录保存token
-        console.log('test',params)
         let { mobilePhone, password, router } = params
         mobilePhone = mobilePhone.trim()
         // const { data }:any = await login({ mobilePhone, password })

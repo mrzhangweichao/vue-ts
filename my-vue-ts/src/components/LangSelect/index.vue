@@ -45,7 +45,7 @@
         }
 
         private handleSetLanguage(lang: string) {
-            console.log('678',this.$i18n)
+            // console.log('678',this.$i18n)
             this.$i18n.locale = lang
             AppModule.SetLanguage(lang)
             this.$message({
