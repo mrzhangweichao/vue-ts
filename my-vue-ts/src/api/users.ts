@@ -1,10 +1,16 @@
 import request from '@/utils/request'
 
 export const login = (data: any) => {
-    console.log('666',data)
     request({
-        url: '/api/authenticate/mobile_number',
+        url: '/api/logon/doLogon',
         method: 'post',
         data
+    })
+}
+
+export const getUserInfo = () => {
+    request({
+        url: '/api/account',
+        method: 'get'
     })
 }

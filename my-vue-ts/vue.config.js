@@ -1,7 +1,7 @@
 const path = require('path')
 
 const mockServerPort = 9527
-const devServerPort = 8888
+const devServerPort = 8088
 const name = 'Typescript Demo'
 
 module.exports = {

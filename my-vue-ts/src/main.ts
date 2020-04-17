@@ -9,6 +9,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/element-variables.scss';
 import '@/styles/index.scss';
 
+import '@/permission'
+
 import i18n from '@/lang'
 
 

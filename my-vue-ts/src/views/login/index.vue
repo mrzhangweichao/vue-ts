@@ -87,7 +87,7 @@ export default class extends Vue {
 
     private handleLogin() {
         (this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
-            console.log(typeof this.$router)
+            // console.log(typeof this.$router)
             if (valid) {
                 this.loading = true
                 await UserModule.Login({
