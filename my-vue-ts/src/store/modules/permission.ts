@@ -6,17 +6,33 @@ import {
     getModule
   } from 'vuex-module-decorators'
 import { RouteConfig } from 'vue-router'
-import router, { asyncRoutes, constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 import store from '@/store'
 
+const hasPermission = (roles: string[], asyncRoutesItem: RouteConfig) => {
+    // if (asyncRoutesItem.meta && asyncRoutesItem.meta.roles) {
+    //     return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
+    // } else {
+    //     return true
+    // }
+    console.log('999', roles.some(role => asyncRoutesItem.meta.roles.includes(role)))
+    return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
+    
+}
+
 export const filterAsyncRoutes = (asyncRoutes: RouteConfig[], roles: string[]) => { // 过滤权限路由
-    console.log('tests777',asyncRoutes,roles)
     const res: RouteConfig[] = []
 
     asyncRoutes.forEach(route => {
         const r = { ...route }
-        console.log('369',r)
+        if (hasPermission(roles,r)) {
+            if (r.children) {
+                r.children = filterAsyncRoutes(r.children, roles)
+            }
+            res.push(r)
+        }
     })
+    return res
 }
 
 export interface IPermissionState {
@@ -31,14 +47,15 @@ class Permission extends VuexModule implements IPermissionState {
 
     @Mutation
     private SET_ROUTES(routes: RouteConfig[]) {
-
+        this.routes = constantRoutes.concat(routes)
+        this.dynamicRoutes = routes
     }
 
     @Action
     public GenerateRoutes(roles: string[]) {
         let accessedRoutes
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-        // this.SET_ROUTES(accessedRoutes)
+        this.SET_ROUTES(accessedRoutes)
     }
 }
 

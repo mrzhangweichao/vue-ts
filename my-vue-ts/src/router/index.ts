@@ -4,7 +4,7 @@ import Layout from '@/layout/index.vue'
 
 Vue.use(VueRouter);
 
-const constantRoutes: RouteConfig[] = [
+export const constantRoutes: RouteConfig[] = [
   {
     path: '/',
     redirect: '/dashboard',
@@ -16,7 +16,7 @@ const constantRoutes: RouteConfig[] = [
           component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
           name: 'Dashboard',
           meta: {
-              title: 'dashboard',
+              title: '首页',
               icon: 'dashboard'
           }
       }
@@ -25,6 +25,7 @@ const constantRoutes: RouteConfig[] = [
   {
     path: '/login',
     name: 'login',
+    hidden: true,
     // webpackChunkName：懒加载后的文件名
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
   },
@@ -48,6 +49,8 @@ const constantRoutes: RouteConfig[] = [
   },
   {
     path: '/404',
+    name: '404'
+    hidden: true,
     component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/error404.vue'),
     // meta: {hidden: true}
   }
@@ -61,7 +64,8 @@ export const asyncRoutes: RouteConfig[] = [
     redirect: '/pages1/pages11',
     meta: {
       title: '菜单1',
-      icon: 'example'
+      icon: 'example',
+      roles: ['admin','super_admin']
     },
     children: [
       {
@@ -69,7 +73,9 @@ export const asyncRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages1/pages11.vue'),
         name: 'pages11',
         meta: {
-            title: '菜单11'
+            title: '菜单11',
+            icon: 'example',
+            roles: ['admin','super_admin']
         }
       },
       {
@@ -77,7 +83,9 @@ export const asyncRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages1/pages12.vue'),
         name: 'pages12',
         meta: {
-            title: '菜单12'
+            title: '菜单12',
+            icon: 'example',
+            roles: ['admin','super_admin']
         }
       }
     ]
@@ -89,7 +97,8 @@ export const asyncRoutes: RouteConfig[] = [
     redirect: '/pages2/pages21',
     meta: {
       title: '菜单2',
-      icon: 'example'
+      icon: 'example',
+      roles: ['admin','super_admin']
     },
     children: [
       {
@@ -97,7 +106,9 @@ export const asyncRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages2/pages21.vue'),
         name: 'pages11',
         meta: {
-            title: '菜单21'
+            title: '菜单21',
+            icon: 'example',
+            roles: ['admin','super_admin']
         }
       },
       {
@@ -105,7 +116,9 @@ export const asyncRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages2/pages22.vue'),
         name: 'pages22',
         meta: {
-            title: '菜单22'
+            title: '菜单22',
+            icon: 'example',
+            roles: ['super_admin']
         }
       }
     ]

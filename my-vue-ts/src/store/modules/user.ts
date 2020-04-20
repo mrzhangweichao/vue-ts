@@ -50,26 +50,57 @@ class User extends VuexModule implements IUserState {
         // const { data } = await getUserInfo()
         const data = {
             authorities: [
-                {
-                    path: '/pages1',
-                    name: 'pages1',
-                    children:  [
-                        {
-                            path: 'pages11',
-                            name: 'pages11'
-                        }
-                    ]
-                },
-                {
-                    path: '/pages2',
-                    name: 'pages2',
-                    children: [
-                        {
-                            path: 'pages2',
-                            name: 'pages22'
-                        }
-                    ]
-                },
+                'admin',
+                // {
+                //     path: '/pages1',
+                //     name: 'pages1',
+                //     children:  [
+                //         {
+                //             path: 'pages11',
+                //             name: 'pages11'
+                //         }
+                //     ]
+                // },
+                // {
+                //     path: '/pages2',
+                //     name: 'pages2',
+                //     children: [
+                //         {
+                //             path: 'pages2',
+                //             name: 'pages22'
+                //         }
+                //     ]
+                // },
+                // {
+                //     path: '/pages1',
+                //     name: 'pages1',
+                //     meta: ['1','2']
+                // },
+                // {
+                //     path: 'pages11',
+                //     name: 'pages11',
+                //     meta: ['1']
+                // },
+                // {
+                //     path: 'pages11',
+                //     name: 'pages12',
+                //     meta: ['2']
+                // },
+                // {
+                //     path: '/pages2',
+                //     name: 'pages2',
+                //     meta: ['1','2']
+                // },
+                // {
+                //     path: 'pages2',
+                //     name: 'pages21',
+                //     meta: ['2']
+                // },
+                // {
+                //     path: 'pages2',
+                //     name: 'pages22',
+                //     meta: ['1']
+                // }
             ]
         }
         if (!data) {

@@ -3,8 +3,9 @@
         <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
                 :default-active="activeMenu"
-                :background-color="variables.menuBg"
-                :text-color="variables.menuText"
+                background-color="#304156"
+                text-color="#bfcbd9"
+                active-text-color="#409EFF"
                 :unique-opened="false"
                 mode="vertical"
             >
@@ -21,6 +22,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { PermissionModule } from '@/store/modules/permission'
 import SidebarItem from './SidebarItem.vue'
 import variables from '@/styles/variables.scss'
 @Component({
@@ -33,7 +35,7 @@ export default class extends Vue {
     private variables:any =  variables
     // 路由
     get routes() {
-        return []
+        return PermissionModule.routes
     }
     // 菜单
     get activeMenu() {
@@ -48,3 +50,44 @@ export default class extends Vue {
     }
 }
 </script>
+<style lang="scss">
+.sidebar-container {
+  // reset element-ui css
+  .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  }
+
+  .scrollbar-wrapper {
+    overflow-x: hidden !important;
+  }
+
+  .el-scrollbar__view {
+    height: 100%
+  }
+
+  .el-scrollbar__bar {
+    &.is-vertical {
+      right: 0px;
+    }
+
+    &.is-horizontal {
+      display: none;
+    }
+  }
+}
+</style>
+<style lang="scss" scoped>
+    #sideBar {
+        width: 20%;
+        height: 100%;
+        .el-scrollbar{
+            height: 100%;
+        }
+        ::v-deep .el-scrollbar__view {
+            height: 100%;
+        }
+        ::v-deep .el-menu {
+            height: 100%;
+        }
+    }
+</style>

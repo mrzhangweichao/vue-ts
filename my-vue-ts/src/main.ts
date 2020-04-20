@@ -14,7 +14,7 @@ import '@/permission'
 import i18n from '@/lang'
 
 
-
+console.log('678900',SvgIcon)
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI, {

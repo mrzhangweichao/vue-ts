@@ -15,14 +15,14 @@ router.beforeEach(async(to: Route, from: Route, next: any) => {
             next({ path: '/' })
             NProgress.done()
         } else {
-            // next()
+            next()
             if (UserModule.roles.length === 0) { 
                 try {
                     await UserModule.GetUserInfo() // 获取用户信息 角色
                     const roles = UserModule.roles
-                    console.log('tests',roles)
                     PermissionModule.GenerateRoutes(roles) // 获取动态路由
-                    // router.addRoutes(PermissionModule.dynamicRoutes)
+                    router.addRoutes(PermissionModule.dynamicRoutes)
+                    next({ ...to, replace: true })
                 } catch (err) {
 
                 }
