@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebarItem" v-if="!item.hidden">
+    <div class="sidebarItem menu-wrapper" v-if="!item.hidden">
        <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren) && !item.alwaysShow">
             <AppLink
                 v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)"
@@ -21,6 +21,7 @@
                     v-if="child.children&&child.children.length>0"
                     :key="child.path"
                     :is-nest="true"
+                    :is-collapse="isCollapse"
                     :item="child"
                     :base-path="resolvePath(child.path)"
                     class="nest-menu"
@@ -51,6 +52,7 @@ import {isExternal} from '@/utils/validate'
 })
 export default class extends Vue {
     @Prop({required: true}) private item!: RouteConfig
+    @Prop({default: false}) private isCollapse!: boolean
     @Prop({default: false}) private isNest!: boolean
     @Prop({default: ''}) private basePath!: string
 
@@ -89,7 +91,7 @@ export default class extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-    .sidebarItem {
-        width: 100%;
-    }
+    // .sidebarItem {
+    //     width: 100%;
+    // }
 </style>

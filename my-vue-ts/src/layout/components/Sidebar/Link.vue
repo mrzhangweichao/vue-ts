@@ -1,6 +1,5 @@
 <template>
     <component v-bind="linkProps(to)">
-        {{to}}
         <slot />
     </component>
 </template>

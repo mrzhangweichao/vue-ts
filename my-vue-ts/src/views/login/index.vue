@@ -14,7 +14,6 @@
                 class="login-form">
                 <el-form-item prop="mobilePhone">
                     <el-input
-                        type="password"
                         autocomplete="off"
                         :placeholder="$t('login.mobilePhone')"
                         v-model="loginForm.mobilePhone"
@@ -78,8 +77,8 @@ export default class extends Vue {
 
     private loading = false
     private loginForm = {
-        mobilePhone: '17091647779',
-        password: 'a123456'
+        mobilePhone: '',
+        password: ''
     }
 
     created() {

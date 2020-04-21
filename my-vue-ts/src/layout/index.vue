@@ -1,28 +1,45 @@
 <template>
-    <div class="app-wrapper">
+    <div :class="classObj" class="app-wrapper">
         <!-- <div
             class="drawer-bg" 
         >
         </div> -->
-        <sidebar></sidebar>
+        <sidebar class="sidebar-container"></sidebar>
+        <div class="main-container">
+            <Navbar/>
+            <AppMain/>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator' 
-    import { Sidebar } from './components'
+    import { Sidebar, Navbar, AppMain } from './components'
     @Component({
         name: 'Layout',
         components: {
-            Sidebar
+            Sidebar,
+            Navbar,
+            AppMain
         }
     })
     export default class extends Vue {
-
+        get sidebar() {
+            return this.$store.state.app.sidebar
+        }
+        get classObj () {
+            return {
+                hideSidebar: !this.sidebar.opened,
+                openSidebar: this.sidebar.opened,
+                withoutAnimation: this.sidebar.withoutAnimation,
+                // mobile: this.device === 'mobile'
+            }
+        }
     }
 </script>
 <style lang="scss" scoped>
     .app-wrapper {
+        display: flex;
         // @include clearfix;
         position: relative;
         height: 100%;

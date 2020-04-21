@@ -10,6 +10,10 @@ export const constantRoutes: RouteConfig[] = [
     redirect: '/dashboard',
     name: 'Dashboard',
     component: Layout,
+    // meta: {
+    //   title: '首页',
+    //   icon: 'dashboard'
+    // },
     children: [
     {
           path: 'dashboard',

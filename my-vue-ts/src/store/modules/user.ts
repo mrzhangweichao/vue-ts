@@ -1,5 +1,5 @@
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
-import { getToken, setToken, removeToken } from '@/utils/cookies'
+import { getToken, setToken, removeToken, getUserName, setUserName, removeUserName } from '@/utils/cookies'
 import { login } from '@/api/users' // 调用api方法
 import store from  '@/store';
 
@@ -7,11 +7,13 @@ import store from  '@/store';
 export interface IUserState {
     id_token: string
     roles: string[]
+    userName: string
 }
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
     public id_token = getToken() || ''
     public roles: string[] = []
+    public userName: string = getUserName() || ''
 
     @Mutation
     private SET_TOKEN(token: string) {
@@ -24,10 +26,22 @@ class User extends VuexModule implements IUserState {
         this.roles = roles
     }
 
+    @Mutation
+    private SET_USERNAME(userName: string) {
+        this.userName = userName
+    }
+
     @Action
-    public ResetToken() { // 清楚token
+    public ResetToken() { // 清除token
         removeToken()
         this.SET_TOKEN('')
+        location.reload()
+    }
+
+    @Action
+    public ResetUserName() {
+        removeUserName()
+        this.SET_USERNAME('')
         location.reload()
     }
 
@@ -39,6 +53,8 @@ class User extends VuexModule implements IUserState {
         const data: any = {id_token: 'my-vue-ts-token',username: mobilePhone}
         setToken(`Bearer ${data.id_token}`)
         this.SET_TOKEN(`Bearer ${data.id_token}`)
+        setUserName(`${data.username}`)
+        this.SET_USERNAME(`${data.username}`)
         router.push('/')
     }
 
@@ -51,56 +67,6 @@ class User extends VuexModule implements IUserState {
         const data = {
             authorities: [
                 'admin',
-                // {
-                //     path: '/pages1',
-                //     name: 'pages1',
-                //     children:  [
-                //         {
-                //             path: 'pages11',
-                //             name: 'pages11'
-                //         }
-                //     ]
-                // },
-                // {
-                //     path: '/pages2',
-                //     name: 'pages2',
-                //     children: [
-                //         {
-                //             path: 'pages2',
-                //             name: 'pages22'
-                //         }
-                //     ]
-                // },
-                // {
-                //     path: '/pages1',
-                //     name: 'pages1',
-                //     meta: ['1','2']
-                // },
-                // {
-                //     path: 'pages11',
-                //     name: 'pages11',
-                //     meta: ['1']
-                // },
-                // {
-                //     path: 'pages11',
-                //     name: 'pages12',
-                //     meta: ['2']
-                // },
-                // {
-                //     path: '/pages2',
-                //     name: 'pages2',
-                //     meta: ['1','2']
-                // },
-                // {
-                //     path: 'pages2',
-                //     name: 'pages21',
-                //     meta: ['2']
-                // },
-                // {
-                //     path: 'pages2',
-                //     name: 'pages22',
-                //     meta: ['1']
-                // }
             ]
         }
         if (!data) {
