@@ -4,11 +4,15 @@
             class="drawer-bg" 
         >
         </div> -->
-        <sidebar class="sidebar-container"></sidebar>
-        <div class="main-container">
-            <Navbar/>
-            <AppMain/>
+        <div class="logo-wrap"><svg-icon name="logo"></svg-icon></div>
+        <div class="content-wrap">
+            <sidebar class="sidebar-container"></sidebar>
+            <div class="main-container">
+                <Navbar/>
+                <AppMain/>
+            </div>
         </div>
+        
     </div>
 </template>
 
@@ -39,11 +43,21 @@
 </script>
 <style lang="scss" scoped>
     .app-wrapper {
-        display: flex;
-        // @include clearfix;
-        position: relative;
+        // display: flex;
+        // // @include clearfix;
+        // position: relative;
         height: 100%;
         width: 100%;
+    }
+    .logo-wrap {
+        background: #ccc;
+        width: 100%;
+        height: 80px;
+    }
+    .content-wrap {
+        display: flex;
+        width: 100%;
+        height: calc(100% - 80px);
     }
 
     // .drawer-bg {

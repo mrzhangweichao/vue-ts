@@ -56,6 +56,7 @@ export default class extends Vue {
     private mounted() {
         // console.log(this.$route)
         // console.log(variables)
+        console.log('routes',this.routes)
     }
 }
 </script>

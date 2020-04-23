@@ -51,14 +51,12 @@ export const constantRoutes: RouteConfig[] = [
         }
     ]
   },
-  {
-    path: '/404',
-    name: '404'
-    hidden: true,
-    component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/error404.vue'),
-    // meta: {hidden: true}
-  }
-
+  // {
+  //   path: '*',
+  //   name:'404',
+  //   hidden: true,
+  //   component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/error404.vue'),
+  // },
 ];
 export const asyncRoutes: RouteConfig[] = [
   {
@@ -86,11 +84,34 @@ export const asyncRoutes: RouteConfig[] = [
         path: 'pages12',
         component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages1/pages12.vue'),
         name: 'pages12',
+        redirect: '/pages1/pages12/pages121',
         meta: {
             title: '菜单12',
             icon: 'example',
             roles: ['admin','super_admin']
-        }
+        },
+        children: [
+          {
+            path: 'pages121',
+            component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages1/pages121.vue'),
+            name: 'pages121',
+            meta: {
+                title: '菜单121',
+                icon: 'example',
+                roles: ['admin','super_admin']
+            },
+          },
+          {
+            path: 'pages122',
+            component: () => import(/* webpackChunkName: "first-step" */ '@/views/pages1/pages122.vue'),
+            name: 'pages122',
+            meta: {
+                title: '菜单122',
+                icon: 'example',
+                roles: ['admin','super_admin']
+            },
+          }
+        ]
       }
     ]
   },
@@ -126,7 +147,13 @@ export const asyncRoutes: RouteConfig[] = [
         }
       }
     ]
-  }
+  },
+  {
+    path: '*',
+    name:'404',
+    hidden: true,
+    component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/error404.vue')
+  },
 ]
 
 // const router = new VueRouter({

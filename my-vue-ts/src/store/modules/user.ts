@@ -64,11 +64,19 @@ class User extends VuexModule implements IUserState {
             throw Error('GetUserInfo: token is undefined!')
         }
         // const { data } = await getUserInfo()
-        const data = {
+        console.log('sss',this.userName)
+        const data = this.userName === 'super_admin' ?
+        {
+            authorities: [
+                'super_admin',
+            ]
+        } :
+        {
             authorities: [
                 'admin',
             ]
         }
+
         if (!data) {
             throw Error('Verification failed, please Login again.')
         }

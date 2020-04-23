@@ -1,12 +1,12 @@
 <template>
     <div>
-        <router-view></router-view>
+        pages121
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component({
-    name: 'pages12',
+    name: 'pages121',
 })
 export default class extends Vue {
 

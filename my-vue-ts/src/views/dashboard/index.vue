@@ -1,5 +1,5 @@
 <template>
-    <div id="dashboard">主骨架---{{token}}</div>
+    <div id="dashboard">首页</div>
 </template>
 
 <script lang="ts">

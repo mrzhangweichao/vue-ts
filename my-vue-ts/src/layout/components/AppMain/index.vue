@@ -21,7 +21,7 @@ export default class extends Vue {
         overflow: auto;
         >div {
             height: calc(100% - 40px);
-            background: #ccc;
+            background: #faf9f9;
             padding: 20px;
         }
     }

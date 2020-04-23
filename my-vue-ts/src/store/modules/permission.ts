@@ -10,13 +10,13 @@ import { asyncRoutes, constantRoutes } from '@/router'
 import store from '@/store'
 
 const hasPermission = (roles: string[], asyncRoutesItem: RouteConfig) => {
-    // if (asyncRoutesItem.meta && asyncRoutesItem.meta.roles) {
-    //     return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
-    // } else {
-    //     return true
-    // }
-    console.log('999', roles.some(role => asyncRoutesItem.meta.roles.includes(role)))
-    return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
+    if (asyncRoutesItem.meta && asyncRoutesItem.meta.roles) {
+        return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
+    } else {
+        return true
+    }
+    // console.log('999', roles.some(role => asyncRoutesItem.meta.roles.includes(role)))
+    // return roles.some(role => asyncRoutesItem.meta.roles.includes(role))
     
 }
 
